@@ -1,0 +1,17 @@
+argo-cd:
+  dex:
+    enabled: false
+  server:
+    ingress:
+      enabled: true
+      hosts:
+      - argocd.127.0.0.1.nip.io
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+    extraArgs:
+      - --insecure
+    config:
+      repositories: |
+        - type: helm
+          name: argo-cd
+          url: https://argoproj.github.io/argo-helm

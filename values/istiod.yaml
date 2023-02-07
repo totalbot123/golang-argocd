@@ -1,0 +1,8 @@
+telemetry:
+  enabled: true
+  v2:
+    enabled: true
+    metadataExchange:
+      wasmEnabled: true
+    prometheus:
+      wasmEnabled: true

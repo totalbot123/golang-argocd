@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: istio-ingress
+  project: default
+  sources:
+    - chart: kube-prometheus-stack
+      helm:
+        valueFiles:
+          - $bootstrap/values/kube-prometheus-stack.yaml   
+      repoURL: https://prometheus-community.github.io/helm-charts
+      targetRevision: 15.6.0
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

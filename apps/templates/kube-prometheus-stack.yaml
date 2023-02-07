@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  project: default
+  sources:
+    - chart: kube-prometheus-stack
+      repoURL: https://prometheus-community.github.io/helm-charts
+      helm:
+        valueFiles:
+          - $bootstrap/values/kube-prometheus-stack.yaml   
+    - repoURL: https://github.com/totalbot123/golang-bootstrap.git
+      targetRevision: master
+      ref: bootstrap 
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
