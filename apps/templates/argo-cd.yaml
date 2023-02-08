@@ -10,10 +10,10 @@ spec:
     server: https://kubernetes.default.svc
     namespace: argocd
   project: default
-  sources:
-    - path: charts/argo-cd
-      repoURL: https://github.com/totalbot123/argocd-practice.git
-      targetRevision: HEAD
+  source:
+    path: charts/argo-cd
+    repoURL: https://github.com/totalbot123/argocd-practice.git
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
