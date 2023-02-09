@@ -11,13 +11,9 @@ spec:
     namespace: istio-ingress
   project: default
   source:
-    chart: kube-prometheus-stack
+    chart: gateway
     targetRevision: 1.16.2
-    helm:
-      valueFiles:
-        - $bootstrap/values/kube-prometheus-stack.yaml   
-    repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 15.6.0
+    repoURL: https://istio-release.storage.googleapis.com/charts
   syncPolicy:
     automated:
       prune: true
