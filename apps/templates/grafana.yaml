@@ -13,7 +13,7 @@ spec:
   source:
     chart: grafana
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: HEAD
+    targetRevision: 6.50.7
   syncPolicy:
     automated:
       prune: true
