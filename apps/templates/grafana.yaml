@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-cd
+  name: grafana
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: monitoring
   project: default
   source:
-    path: charts/argo-cd
-    repoURL: https://github.com/totalbot123/golang-bootstrap.git
+    chart: grafana
+    repoURL: https://grafana.github.io/helm-charts
     targetRevision: HEAD
   syncPolicy:
     automated:
