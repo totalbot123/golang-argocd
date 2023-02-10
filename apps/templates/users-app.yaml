@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istiod
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: development
+  project: default
+  source:
+    path: chart/golang
+    repoURL: https://github.com/totalbot123/golang.git
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - environments/dev/users/values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
