@@ -10,10 +10,16 @@ spec:
     server: https://kubernetes.default.svc
     namespace: monitoring
   project: default
-  source:
-    chart: kube-prometheus-stack
-    repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 44.4.0
+  sources:
+    - chart: kube-prometheus-stack
+      repoURL: https://prometheus-community.github.io/helm-charts
+      targetRevision: HEAD
+      helm:
+        valueFiles:
+        - $values/values/kube-prometheus-stack.yaml
+    - repoURL: 'https://github.com/totalbot123/golang-bootstrap.git'
+      targetRevision: HEAD
+      ref: values
   syncPolicy:
     automated:
       prune: true
